@@ -1,0 +1,36 @@
+{
+  "name": "test-cicd",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:stagewise": "concurrently -k -n vite,bridge -c blue,magenta \"cross-env VITE_ENABLE_STAGEWISE=false npm run dev\" \"wait-on http://127.0.0.1:5173 && stagewise -b -s -a 5173 -p 3100 -w .\"",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "e2e": "playwright test",
+    "e2e:headed": "playwright test --headed"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.58.2",
+    "@stagewise/toolbar": "^0.6.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "stagewise": "^0.11.1",
+    "vite": "^8.0.12",
+    "wait-on": "^9.0.10"
+  }
+}
